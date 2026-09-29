@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task Pipeline Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    padding:20px;
+}
+
+.header{
+    margin-bottom:20px;
+}
+
+h1{
+    color:#0b3d91;
+}
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+    text-align:center;
+}
+
+.card h2{
+    font-size:30px;
+    margin-top:10px;
+}
+
+.total{border-left:6px solid #3498db;}
+.notstarted{border-left:6px solid #e74c3c;}
+.inprogress{border-left:6px solid #f39c12;}
+.complete{border-left:6px solid #2ecc71;}
+
+.search-box{
+    margin-bottom:15px;
+}
+
+input[type="text"]{
+    width:300px;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+th{
+    background:#0b3d91;
+    color:white;
+    padding:12px;
+    text-align:left;
+}
+
+td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+}
+
+select{
+    padding:6px;
+    border-radius:6px;
+}
+
+input[type="date"]{
+    padding:5px;
+}
+
+.notes{
+    width:100%;
+    padding:5px;
+}
+
+tr:hover{
+    background:#f5faff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Meeting Manager Task Dashboard</h1>
+</div>
+
+<div class="dashboard">
+    <div class="card total">
+        <h3>Total Pipeline Tasks</h3>
+        <h2 id="totalTasks">8</h2>
+    </div>
+
+    <div class="card notstarted">
+        <h3>Not Started</h3>
+        <h2 id="notStarted">8</h2>
+    </div>
+
+    <div class="card inprogress">
+        <h3>In Progress</h3>
+        <h2 id="inProgress">0</h2>
+    </div>
+
+    <div class="card complete">
+        <h3>Completed</h3>
+        <h2 id="completed">0</h2>
+    </div>
+</div>
+
+<div class="search-box">
+    <input type="text" id="searchTask" placeholder="Search task...">
+</div>
+
+<table id="taskTable">
+<thead>
+<tr>
+    <th>Task</th>
+    <th>Lead(s)</th>
+    <th>Status</th>
+    <th>Deadline</th>
+    <th>Notes</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Support Lokender’s training on the platform</td>
+<td>Polly, Product Team (Ravinder?), Herdip</td>
+<td>
+<select class="status">
+<option>Not Started</option>
+<option>In Progress</option>
+<option>Complete</option>
+</select>
+</td>
+<td><input type="date"></td>
+<td><input class="notes"></td>
+</tr>
+
+<tr>
+<td>Make sure event is set up on the platform</td>
+<td>Lokender, Polly, Product Team (Ravinder?)</td>
+<td>
+<select class="status">
+<option>Not Started</option>
+<option>In Progress</option>
+<option>Complete</option>
+</select>
+</td>
+<td><input type="date"></td>
+<td><input class="notes"></td>
+</tr>
+
+<tr>
+<td>Decide on a deadline for wish-lists and add this to forum settings</td>
+<td>Lokender</td>
+<td>
+<select class="status">
+<option>Not Started</option>
+<option>In Progress</option>
+<option>Complete</option>
+</select>
+</td>
+<td><input type="date"></td>
+<td><input class="notes"></td>
+</tr>
+
+<tr>
+<td>Set up the sponsor tracker to progress sponsor registrations</td>
+<td>Lokender</td>
+<td>
+<select class="status">
+<option>Not Started</option>
+<option>In Progress</option>
+<option>Complete</option>
+</select>
+</td>
+<td><input type="date"></td>
+<td><input class="notes"></td>
+</tr>
+
+<tr>
+<td>Double check email copy and test the joint mailbox</td>
+<td>Lokender, Herdip</td>
+<td>
+<select class="status">
+<option>Not Started</option>
+<option>In Progress</option>
+<option>Complete</option>
+</select>
+</td>
+<td><input type="date"></td>
+<td><input class="notes"></td>
+</tr>
+
+<tr>
+<td>Launch supplier registration</td>
+<td>Lokender</td>
+<td>
+<select class="status">
+<option>Not Started</option>
+<option>In Progress</option>
+<option>Complete</option>
+</select>
+</td>
+<td><input type="date"></td>
+<td><input class="notes"></td>
+</tr>
+
+<tr>
+<td>Make sure all sponsors with meetings are registered on the site</td>
+<td>Lokender, Herdip</td>
+<td>
+<select class="status">
+<option>Not Started</option>
+<option>In Progress</option>
+<option>Complete</option>
+</select>
+</td>
+<td><input type="date"></td>
+<td><input class="notes"></td>
+</tr>
+
+<tr>
+<td>Check what else needs to be updated in the platform. Ask product team</td>
+<td>Lokender, Product Team (Ravinder?)</td>
+<td>
+<select class="status">
+<option>Not Started</option>
+<option>In Progress</option>
+<option>Complete</option>
+</select>
+</td>
+<td><input type="date"></td>
+<td><input class="notes"></td>
+</tr>
+
+</tbody>
+</table>
+
+<script>
+
+function updateDashboard(){
+
+    let statuses=document.querySelectorAll('.status');
+
+    let notStarted=0;
+    let inProgress=0;
+    let completed=0;
+
+    statuses.forEach(status=>{
+
+        if(status.value==="Not Started")
+            notStarted++;
+
+        else if(status.value==="In Progress")
+            inProgress++;
+
+        else if(status.value==="Complete")
+            completed++;
+    });
+
+    document.getElementById('notStarted').innerText=notStarted;
+    document.getElementById('inProgress').innerText=inProgress;
+    document.getElementById('completed').innerText=completed;
+    document.getElementById('totalTasks').innerText=statuses.length;
+}
+
+document.querySelectorAll('.status').forEach(item=>{
+    item.addEventListener('change',updateDashboard);
+});
+
+updateDashboard();
+
+document.getElementById('searchTask').addEventListener('keyup',function(){
+
+    let search=this.value.toLowerCase();
+
+    let rows=document.querySelectorAll("#taskTable tbody tr");
+
+    rows.forEach(row=>{
+
+        let task=row.cells[0].innerText.toLowerCase();
+
+        if(task.includes(search)){
+            row.style.display="";
+        }else{
+            row.style.display="none";
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
+`
